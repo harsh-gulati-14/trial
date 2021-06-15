@@ -1,0 +1,76 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.*;
+import javafx.event.*;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+import java.util.*;
+import java.util.Map.Entry;
+
+public class App extends Application {
+    double price = 0;
+    double dprice = 0;
+    int i = 0;
+    public void start(Stage primaryStage) throws Exception 
+    {
+        Label lb1 = new Label("Welcome to Allmart Supermarket.");
+        Label lb2 = new Label("Please select your items.");
+        HashMap<String, Double> items = new HashMap<String, Double>();
+        items.put("Cookies", 300.0);
+        items.put("Masks", 500.0);
+        items.put("Cadbury Chocolate", 600.0);
+        items.put("Bread", 400.0);
+        items.put("Cake", 1500.0);
+
+        GridPane grid = new GridPane();
+        grid.add(lb1,1,1);
+        grid.add(lb2,1,2);
+        int k = 3;
+        CheckBox[] cb = new CheckBox[5];
+        for (Entry<String, Double> entry : items.entrySet())
+        {
+            cb[i] = new CheckBox(entry.getKey());
+            grid.add(cb[i],1,k++);
+            i++;
+        }
+        Button btn = new Button("Submit");
+        grid.add(btn, 1, k++);
+        btn.setOnAction(new EventHandler<ActionEvent>(){
+            GridPane gp = new GridPane();
+            public void handle(ActionEvent event) {
+                for(int r = 0;r<i;r++)
+                {
+                    if(cb[r].isSelected()) {
+                        System.out.println(cb[r].getText());
+                        price += items.get(cb[r].getText());
+                        gp.add(new Label("Item " + (r+1)), 1, r+2);
+                    }
+                }
+                if(price > 2000) {
+                    // Apply 20% discount
+                    dprice = 0.8*price;
+                }
+                else {
+                    dprice = price;
+                }
+                gp.add(new Label("TOTAL : " + price), 1, i+3);
+                gp.add(new Label("DISCOUNTED PRICE : " + dprice), 1, i+4);
+                Scene sc1 = new Scene(gp);
+                primaryStage.setScene(sc1);
+                primaryStage.setWidth(500);
+                primaryStage.setHeight(500);
+                primaryStage.show();
+            }
+        });
+
+        Scene sc = new Scene(grid);
+        primaryStage.setScene(sc);
+        primaryStage.setWidth(500);
+        primaryStage.setHeight(500);
+        primaryStage.show();
+    }
+    public static void main(String args[])
+    {
+        launch(args);
+    }
+}

@@ -1,0 +1,148 @@
+import java.lang.*;
+import java.util.*;
+
+class Count
+{
+    int vote1;
+    int vote2;
+    int vote3;
+    int arr[]=new int[240];
+    static int i=0;
+    static int k = 0;
+    Count(int arr[])
+    {
+        vote1=0;
+        vote2=0;
+        vote3=0;
+        this.arr=arr;
+    }
+    void votes_count()
+    {
+        while(i<arr.length)
+        {
+            synchronized(this)
+            {
+                
+                System.out.println(Thread.currentThread().getName());
+                if(arr[i]==1)
+                {
+                    vote1++;
+                }
+                else if(arr[i]==2)
+                {
+                    vote2++;
+                }
+                else
+                {
+                    vote3++;
+                }
+                i++;
+            }
+            try {
+                Thread.sleep(300);
+            }
+            catch(Exception e) {}
+        }
+    }
+
+    int[] fxn()
+    {
+        int array[]=new int[3];
+        array[0]=vote1;
+        array[1]=vote2;
+        array[2]=vote3;
+        System.out.println("\nTotal Votes of A: "+array[0]);
+        System.out.println("Total Votes of B: "+array[1]);
+        System.out.println("Total Votes of C: "+array[2]+"\n");
+        return array;
+    }
+}
+class MyRunnable implements Runnable
+{
+    Count c;
+    MyRunnable(Count temp)
+    {
+        c=temp;
+    }
+    public void run()
+    {
+        c.votes_count();
+    }
+}
+
+class MainThread
+{
+    public static void main(String args[])
+    {
+        int array[]=new int[240];
+        for(int i=0;i<240;i++)
+        {
+            array[i]=(int)(Math.random()*3+1);
+            
+        }
+        Count obj=new Count(array);
+        MyRunnable r = new MyRunnable(obj);
+        Thread t1=new Thread(r);
+        Thread t2=new Thread(r);
+        Thread t3=new Thread(r);
+        Thread t4=new Thread(r);
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+        try {
+            t1.join();
+            t2.join();
+            t3.join();
+            t4.join();
+        }
+        catch(Exception e){}
+        int arr[]=new int[3];
+        arr=obj.fxn();
+        if(arr[0]>=arr[1] && arr[0]>=arr[2])
+        {
+            if(arr[0]==arr[1])
+            {
+                System.out.println("A and B are tied");
+            }
+            else if(arr[0]==arr[2])
+            {
+                System.out.println("A and C are tied");
+            }
+            else
+            {
+                System.out.println("A wins the election");
+            }
+        }
+        else if(arr[1]>=arr[0] && arr[1]>=arr[2])
+        {
+            if(arr[0]==arr[1])
+            {
+                System.out.println("A and B are tied");
+            }
+            else if(arr[1]==arr[2])
+            {
+                System.out.println("B and C are tied");
+            }
+            else
+            {
+                System.out.println("B wins the election");
+            }
+        }
+        else if(arr[2]>=arr[1] && arr[2]>=arr[0])
+        {
+            if(arr[2]==arr[0])
+            {
+                System.out.println("A and C are tied");
+            }
+            else if(arr[1]==arr[2])
+            {
+                System.out.println("B and C are tied");
+            }
+            else
+            {
+                System.out.println("C wins the election");
+            }
+        }
+    }
+}

@@ -1,0 +1,38 @@
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
+import java.sql.*;
+public class MyServDb extends HttpServlet
+{
+public void service(HttpServletRequest req, HttpServletResponse res) throws 
+ServletException,IOException
+ {
+ String uname=req.getParameter("fn");
+ int age=Integer.parseInt(req.getParameter("ag"));
+ String gen=req.getParameter("m");
+int k=0;try
+{
+Class.forName("oracle.jdbc.driver.OracleDriver");
+}
+catch(ClassNotFoundException cne)
+{}
+try
+{
+Connection 
+con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","system");
+Statement s=con.createStatement();
+String sq="insert into mytab values('"+uname+"',"+age+",'"+gen+"')";
+k=s.executeUpdate(sq);
+s.close();
+con.close();
+}
+catch(SQLException se)
+{}
+catch(Exception e)
+{
+if(k>0)
+System.out.println("Inside error ");
+else
+System.out.println("error ");
+}
+} }

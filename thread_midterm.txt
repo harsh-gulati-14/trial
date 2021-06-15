@@ -1,0 +1,102 @@
+import java.lang.*;
+import java.io.*;
+import java.util.Scanner;
+
+class Common {
+    StringBuffer sb = new StringBuffer();
+
+    synchronized public void quiz() {
+        try {
+            File file = new File("question.txt");
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            while ((line = br.readLine()) != null) {
+                try {
+                    while (sb.length() != 0)
+                        wait();
+                    sb.append(line);
+                    System.out.println(sb.toString());
+                    System.out.println("Teacher Waiting for answer");
+                    notify();
+                    Thread.sleep(30000);
+                } catch (InterruptedException e) {
+                    System.out.println("Caught interrupted exception");
+                }
+            }
+            fr.close();
+            notify();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    synchronized public void sol() {
+        try {
+            FileOutputStream fout = new FileOutputStream("ans.txt");
+            PrintStream pout = new PrintStream(fout);
+            try {
+                while (sb.length() == 0)
+                    wait();
+                System.out.println("Student Writing in ans.txt file");
+                pout.println(sb.toString());
+                sb.setLength(0);
+                notify();
+                Thread.sleep(30000);
+            } catch (InterruptedException e) {
+                System.out.println("Caught interrupted exception");
+            }
+
+            pout.close();
+            fout.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class Exam extends Thread {
+
+    Common c;
+
+    Exam(Common c1) {
+        c = c1;
+    }
+
+    public void run() {
+
+        c.quiz();
+    }
+}
+
+class User extends Thread {
+
+    Common c;
+
+    User(Common c1) {
+        c = c1;
+    }
+
+    public void run() {
+
+        c.sol();
+    }
+}
+
+public class Harsh {
+    public static void main(String args[]) {
+        System.out.println("19BCT0210 HARSH GULATI");
+        System.out.println();
+        Common c = new Common(); 
+        Exam t1 = new Exam(c);
+        User t2 = new User(c);
+        t1.start();
+        t2.start();
+        try {
+            t1.join();
+            t2.join();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}

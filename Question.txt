@@ -1,0 +1,63 @@
+index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VIT Conference</title>
+</head>
+<body>
+    <form action="success" method="POST">
+        <label for="titlepaper">Enter title of the paper: </label>
+        <input type="text" name="titlepaper" id="titlepaper">
+        <br>
+        <label for="clgname">Enter college name: </label>
+        <input type="text" name="clgname" id="clgname">
+        <br>
+        <label for="candname">Enter candidate name: </label>
+        <input type="text" name="candname" id="candname">
+        <br>
+        <label for="domain">Enter domain: </label>
+        <input type="text" name="domain" id="domain">
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+
+
+web.xml
+
+<web-app>
+    <servlet>
+        <servlet-name>ms</servlet-name>
+        <servlet-class>MyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ms</servlet-name>
+        <url-pattern>/success</url-pattern>
+    </servlet-mapping>
+</web-app>
+
+MyServlet.java
+
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
+
+public class MyServlet extends HttpServlet {
+    public void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+
+        // Set response content type
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        String title = "Success";
+
+        String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + "transitional//en\">\n";
+
+        out.println(docType +
+        "<html>\n" +
+        "<head><title>" + title + "</title></head>\n" +
+        "<body bgcolor = \"#f0f0f0\">\n" +
+        "<h1 align = \"center\">" + title + "</h1>\n");
+        out.println("</body></html>");
+    }
+}

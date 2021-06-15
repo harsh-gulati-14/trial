@@ -1,0 +1,16 @@
+<html>
+<head>
+<title>DB Connections</title>
+</head>
+<body>
+<form name="frm" action="msd" method="post">
+<table border=1>
+<tr><td colspan="2">Fill up your details</td></tr>
+<tr><td>Name</td><td colspan="2"><input type="text" name="fn"/></td></tr>
+<tr><td>Age</td><td colspan="2"><input type="text" name="ag"/></td></tr>
+<tr><td>Gender</td><td><input type="radio" name="m" value="Male"/> Male
+</td><td><input type="radio" name="m" value="Female"/>Female</td></tr>
+<tr><td></td><td><input type="submit" value="submit"/></td></tr>
+</table></form>
+</body>
+</html>

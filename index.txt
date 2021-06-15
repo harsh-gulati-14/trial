@@ -1,0 +1,62 @@
+<html> 
+<body> 
+<h1>Register Form</h1>
+<form action="login.jsp">
+			<table style="with: 50%">
+				<tr>
+					<td>First Name</td>
+					<td><input type="text" name="first_name" /></td>
+				</tr>
+				<tr>
+					<td>Last Name</td>
+					<td><input type="text" name="last_name" /></td>
+				</tr>
+				<tr>
+					<td>UserName</td>
+					<td><input type="text" name="username" /></td>
+				</tr>
+					<tr>
+					<td>Password</td>
+					<td><input type="password" name="password" /></td>
+				</tr>
+				<tr>
+					<td>Address</td>
+					<td><input type="text" name="address" /></td>
+				</tr>
+				<tr>
+					<td>Contact No</td>
+					<td><input type="text" name="contact" /></td>
+				</tr></table>
+			<input type="submit" value="Submit" /></form>
+</form> 
+</body> 
+</html>
+
+login.jsp
+
+<html>
+<body>
+<% 
+		String first_name = request.getParameter("first_name");
+		String last_name = request.getParameter("last_name");
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String address = request.getParameter("address");
+		String contact = request.getParameter("contact");
+		
+		if(first_name.isEmpty() || last_name.isEmpty() || username.isEmpty() || 
+				password.isEmpty() || address.isEmpty() || contact.isEmpty())
+		{
+			out.print(all)
+
+
+
+			.....................
+		}
+		else
+		{
+			out.print("Please enter correct details")				;
+		}
+%>
+</body>
+</html>
