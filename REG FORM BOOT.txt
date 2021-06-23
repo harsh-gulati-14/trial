@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container" style="background-color: orange;">
+        <form>
+        <h1><span class="glyphicon glyphicon-user"></span> Shipping Details </h1>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="fname">First</label>
+                    <input type="text" class="form-control" id="fname" placeholder="Enter first name">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="lname">Last</label>
+                    <input type="text" class="form-control" id="lname" placeholder="Enter last name">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+            <div class="form-group">
+                <label for="str">Street</label>
+                <input type="text" class="form-control" id="str" placeholder="Street">
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <input type="text" class="form-control" id="state" placeholder="State">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" id="city" placeholder="City">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="zip">ZIP</label>
+                    <input type="text" class="form-control" id="zip" placeholder="ZIP">
+                </div>
+            </div>
+        </div>
+        <h1><span class="glyphicon glyphicon-envelope"></span> Payment Information</h1>
+        <div class="row">
+            <div class="col-sm-12">
+            <div class="form-group">
+                <label for="str">Credit Card</label>
+                <input type="text" class="form-control" id="str" placeholder="WWWW-XXXX-YYYY-ZZZZ" pattern="^\d{4}\-\d{4}\-\d{4}\-\d{4}$">
+            </div>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="fname">Expire</label>
+                    <input type="date" class="form-control" id="fname" placeholder="dd/mm/yyyy">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="lname">CVV</label>
+                    <input type="password" class="form-control" id="lname" placeholder="000">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Register</button><br><br>
+                    <button type="reset" class="btn btn-primary">Reset</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>
+</body>

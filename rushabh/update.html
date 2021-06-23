@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>19BDS0055 - Rushabh Kela</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style type="text/css">
+        * {
+            font-size: 30px;
+        }
+        table {
+            border : 1px solid black;
+        }
+        th, td {
+            text-align: right;
+            padding: 6px;
+        }
+        .left {
+            text-align: left;
+            padding-right: 50;
+        }
+        .right {
+            text-align: right;
+            vertical-align: top;
+            
+        }
+        .heading{
+            font-weight: bold;
+            text-align: right;
+            background-color: wheat;
+            padding-right: 30px;
+        }
+        .center_div {
+            margin: auto;
+            width: 600px;
+            margin-left: 450px;
+        }
+        button {
+            margin-top: 30px;
+        }
+        </style>
+    </head>
+    <body>
+        <h1><center>Rushabh Kela - 19BDS0055</center></h1>
+        <div class="center_div">
+        <form id="form1" method="POST">
+            <table cellpadding="10">
+                <colgroup>
+                    <col span="2" style="width:300px;">
+                </colgroup>
+                <th class="heading" colspan="2">UPDATE DATABASE</th>
+                <tr>
+                    <td colspan="2" style="padding-right: 50">Please fill in the details.</td>
+                </tr>
+                <tr>
+                    <td class="right">Register Number</td>
+                    <td class="left"><input type="text" name="regno" required></td>
+                </tr>
+                <tr>
+                    <td class="right">CGPA</td>
+                    <td class="left"><input type="text" name="cgpa" required></td>
+                </tr>
+                <tr>
+                    <td class="right"><button type="submit" id="submitBTN">SUBMIT</button></td>
+                    <td class="left"><button type="reset" id="resetBTN">RESET</button></td>
+                </tr>
+            </table>
+        </form>
+        </div>
+    </body>
+</html>
